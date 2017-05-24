@@ -1,0 +1,9 @@
+{
+  "run_list": [
+    "role[devenv]",
+    "role[packager]"
+  ],
+  "peers": {
+    "devenv": "10.10.10.10"
+  }
+}

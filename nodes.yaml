@@ -1,3 +1,4 @@
 devenv:
   run_list:
     - role[devenv]
+    - role[packager]

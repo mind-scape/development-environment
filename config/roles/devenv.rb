@@ -1,6 +1,7 @@
 name "devenv"
-description "Configure development environment, in order to do packaging and development of MindScape"
+description "Configure development environment"
 
 run_list *[
-  'recipe[basics]'
+  'recipe[basics]',
+  'recipe[environment]'
 ]
