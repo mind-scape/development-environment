@@ -1,6 +1,4 @@
 ## Install packaging dependencies in RedHat environments
-CMAKE_VERSION="3.8.1"
-
 execute 'yum update -y'
 yum_package 'epel-release'
 execute 'yum update'
@@ -10,19 +8,12 @@ execute 'yum update'
   package p
 end
 
-execute 'download newest cmake version' do
-  command "wget https://cmake.org/files/v3.8/cmake-#{CMAKE_VERSION}.tar.gz"
+execute "yum group install -y 'gnome desktop'"
+
+execute "switch to the GUI target" do
+  command "systemctl isolate graphical.target"
 end
 
-execute 'tar cmake' do
- command "tar -xvzf cmake-#{CMAKE_VERSION}.tar.gz"
-end
-
-bash "installing cmake #{CMAKE_VERSION}" do
-  code <<-EOH
-    cd cmake-#{CMAKE_VERSION}
-    cmake .
-    make
-    make install
-  EOH
+execute "enable graphical target" do
+  command "systemctl set-default graphical.target"
 end
